@@ -18,6 +18,7 @@ const PlaidLink = ({ user, variant, dwollaCustomerId } : PlaidLinkProps) => {
   const onSuccess = useCallback(async (public_token: string) => {
     await exchangePublicToken({publicToken: public_token, user})
     router.push('/')
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user])
   
   const config: PlaidLinkOptions = {

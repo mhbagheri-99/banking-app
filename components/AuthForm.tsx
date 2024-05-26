@@ -90,9 +90,6 @@ const AuthForm = ({ type }: { type: string }) => {
           </p>
         </div>
       </header>
-      {/* <div className="flex flex-col gap-4">
-          <PlaidLink user={user} variant="primary" />
-        </div> */}
       {user ? (
         <div className="flex flex-col gap-4">
           <PlaidLink user={user} variant="primary" />
