@@ -14,6 +14,7 @@ import CustomFormInput from "./CustomFormInput";
 import { Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { getLoggedInUser, signIn, signUp } from "@/lib/actions/user.actions";
+import PlaidLink from "./PlaidLink";
 
 const AuthForm = ({ type }: { type: string }) => {
   const [user, setUser] = useState(null);
@@ -31,8 +32,21 @@ const AuthForm = ({ type }: { type: string }) => {
   });
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
+    setIsLoading(true);
     try {
-      setIsLoading(true);
+      const userData = {
+        firstName: values.firstName!,
+        lastName: values.lastName!,
+        email: values.email,
+        password: values.password,
+        address1: values.address1!,
+        city: values.city!,
+        state: values.state!,
+        postalCode: values.postalCode!,
+        dateOfBirth: values.dateOfBirth!,
+        ssn: values.ssn!,
+      };
+
       if (type === "sign-in") {
         const response = await signIn(values.email, values.password);
         if (response) {
@@ -40,7 +54,7 @@ const AuthForm = ({ type }: { type: string }) => {
         }
       }
       if (type === "sign-up") {
-        const newUser = await signUp(values);
+        const newUser = await signUp(userData);
         setUser(newUser);
       }
       console.log(values);
@@ -76,8 +90,13 @@ const AuthForm = ({ type }: { type: string }) => {
           </p>
         </div>
       </header>
+      {/* <div className="flex flex-col gap-4">
+          <PlaidLink user={user} variant="primary" />
+        </div> */}
       {user ? (
-        <div className="flex flex-col gap-4"></div>
+        <div className="flex flex-col gap-4">
+          <PlaidLink user={user} variant="primary" />
+        </div>
       ) : (
         <>
           <Form {...form}>
