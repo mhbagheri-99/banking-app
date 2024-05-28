@@ -166,7 +166,7 @@ export const createBankAccount = async ({
 
     return parseStringify(bankAccount);
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 }
 
@@ -222,7 +222,7 @@ export const getBanks = async ({ userId }: getBanksProps) => {
 
     return parseStringify(banks.documents);
   } catch (error) {
-    console.log(error)
+    console.error(error)
   }
 }
 
@@ -238,7 +238,7 @@ export const getBank = async ({ documentId }: getBankProps) => {
 
     return parseStringify(bank.documents[0]);
   } catch (error) {
-    console.log(error)
+    console.error(error)
   }
 }
 
@@ -256,6 +256,6 @@ export const getBankByAccountId = async ({ accountId }: getBankByAccountIdProps)
 
     return parseStringify(bank.documents[0]);
   } catch (error) {
-    console.log(error)
+    console.error(error)
   }
 }

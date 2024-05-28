@@ -3,6 +3,7 @@ import { Button } from './ui/button'
 import { PlaidLinkOptions, usePlaidLink } from 'react-plaid-link'
 import { useRouter } from 'next/navigation'
 import { createLinkToken, exchangePublicToken } from '@/lib/actions/user.actions'
+import Image from 'next/image'
 
 const PlaidLink = ({ user, variant, dwollaCustomerId } : PlaidLinkProps) => {
   const router = useRouter()
@@ -35,12 +36,14 @@ const PlaidLink = ({ user, variant, dwollaCustomerId } : PlaidLinkProps) => {
         </Button> 
       ) : (
         variant === "ghost" ? (
-          <Button>
-            Connect Bank Account
+          <Button variant='ghost' className='plaidlink-ghost' onClick={() => open()}>
+            <Image src='/icons/connect-bank.svg' alt='Add Bank Account' width={24} height={24} />
+            <p className='hidden text-[16px] font-semibold text-black-2 xl:block'>Connect Bank Account</p>
           </Button>
         ) : (
-          <Button>
-            Connect Bank Account
+          <Button className='plaidlink-default' onClick={() => open()}>
+            <Image src='/icons/connect-bank.svg' alt='Add Bank Account' width={24} height={24} />
+            <p className='text-[16px] font-semibold text-black-2'>Connect Bank Account</p>
           </Button>
         )
       )}

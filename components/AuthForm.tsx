@@ -57,7 +57,6 @@ const AuthForm = ({ type }: { type: string }) => {
         const newUser = await signUp(userData);
         setUser(newUser);
       }
-      console.log(values);
     } catch (error) {
       console.error(error);
     } finally {
