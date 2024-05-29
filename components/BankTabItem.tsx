@@ -10,10 +10,15 @@ export const BankTabItem = ({ account, appwriteItemId }: BankTabItemProps) => {
   const isActive = appwriteItemId === account?.appwriteItemId;
 
   const handleBankChange = () => {
-    const newUrl = formUrlQuery({
+    const newUrlId = formUrlQuery({
       params: searchParams.toString(),
       key: "id",
       value: account?.appwriteItemId,
+    });
+    const newUrl = formUrlQuery({
+      params: newUrlId.slice(2),
+      key: "page",
+      value: "1",
     });
     router.push(newUrl, { scroll: false });
   };

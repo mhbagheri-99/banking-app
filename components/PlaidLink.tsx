@@ -1,3 +1,4 @@
+"use client";
 import React, { useCallback, useEffect, useState } from 'react'
 import { Button } from './ui/button'
 import { PlaidLinkOptions, usePlaidLink } from 'react-plaid-link'
@@ -41,12 +42,23 @@ const PlaidLink = ({ user, variant, dwollaCustomerId } : PlaidLinkProps) => {
             <p className='hidden text-[16px] font-semibold text-black-2 xl:block'>Connect Bank Account</p>
           </Button>
         ) : (
-          <Button className='plaidlink-default' onClick={() => open()}>
+          variant === "sidebar" ? (
+            <div onClick={() => open()} className="flex gap-2 cursor-pointer">
+              <Image
+                src="/icons/plus.svg"
+                alt="Add Bank"
+                width={20}
+                height={20}
+              />
+              <h2 className="text-14 font-semibold text-gray-600">Add Bank</h2>
+            </div> 
+        ) : (
+          <Button className='plaidlink-default sidebar-link' onClick={() => open()}>
             <Image src='/icons/connect-bank.svg' alt='Add Bank Account' width={24} height={24} />
-            <p className='text-[16px] font-semibold text-black-2'>Connect Bank Account</p>
+            <p className='text-[16px] font-semibold text-black-2 sidebar-label'>Connect Bank Account</p>
           </Button>
         )
-      )}
+      ))}
     </>
   )
 }
